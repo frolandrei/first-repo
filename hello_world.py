@@ -1,4 +1,4 @@
-def hello(text="world"):
+def hello(text: str = "world"):
     print(f"Hello {text}!")
 
 
