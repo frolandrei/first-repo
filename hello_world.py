@@ -2,4 +2,5 @@ def hello():
     print("Hello world!")
 
 
-hello()
+if __name__ == "__main__":
+    hello()
