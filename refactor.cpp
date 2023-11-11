@@ -17,9 +17,9 @@ int main()
   int xyzw=0;
   while (xyzw < test_cases.size()) {
       if (bestMod(test_cases[xyzw]) != abs(test_cases[xyzw])) {
-        std::cout << "Тест не пройден " << test_cases[xyzw] << "   ";
+          std::cout << "Тест не пройден " << test_cases[xyzw] << "   ";
       } else { 
-        std::cout << bestMod(test_cases[xyzw]) << "  ";
+          std::cout << bestMod(test_cases[xyzw]) << "  ";
     }
     xyzw=xyzw+1;
 }
