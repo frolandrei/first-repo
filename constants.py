@@ -9,10 +9,10 @@ HEALTH = 100
 MONEY = 650
 TOTAL_LEVELS = 15
 
-#enemy constants
+# enemy constants
 SPAWN_COOLDOWN = 400
 
-#turret constants
+# turret constants
 TURRET_LEVELS = 4
 BUY_COST = 200
 UPGRADE_COST = 100
