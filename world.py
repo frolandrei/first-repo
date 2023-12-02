@@ -4,7 +4,7 @@ import constants as c
 from enemy_data import ENEMY_SPAWN_DATA
 
 
-class World():
+class World:
     def __init__(self, data, map_image):
         self.level = 1
         self.game_speed = 1
@@ -45,7 +45,7 @@ class World():
         # now randomize the list to shuffle the enemies
         random.shuffle(self.enemy_list)
 
-    def check_level_complete(self):
+    def is_level_complete(self):
         if (self.killed_enemies + self.missed_enemies) == len(self.enemy_list):
             return True
 

@@ -65,8 +65,6 @@ class Turret(pg.sprite.Sprite):
 
     def pick_target(self, enemy_group):
         # find an enemy to target
-        x_dist = 0
-        y_dist = 0
         # check distance to each enemy to see if it is in range
         for enemy in enemy_group:
             if enemy.health > 0:
