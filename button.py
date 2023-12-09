@@ -2,14 +2,16 @@ import pygame as pg
 
 
 class Button:
-    def __init__(self, x, y, image, single_click):
+    def __init__(self, x: int, y: int, image: pg.Surface, single_click: bool):
+        """ Конструктор кнопки - элемента интерфейса """
         self.image = image
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
         self.clicked = False
         self.single_click = single_click
 
-    def draw(self, surface):
+    def draw(self, surface: pg.Surface) -> bool:
+        """ Рисование кнопки на заданной поверхности """
         action = False
         # get mouse position
         pos = pg.mouse.get_pos()
