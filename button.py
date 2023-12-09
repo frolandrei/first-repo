@@ -2,6 +2,16 @@ import pygame as pg
 
 
 class Button:
+    """Базовый элемент интерфейса. Кнопка, на которую можно нажать"""
+
+    image: pg.surface.Surface
+    """Изображение кнопки"""
+    rect: pg.rect.Rect
+    """Размеры и положение"""
+    clicked: bool
+    """Нажата ли кнопка"""
+    single_click: bool
+
     def __init__(self, x: int, y: int, image: pg.Surface, single_click: bool):
         """ Конструктор кнопки - элемента интерфейса """
         self.image = image

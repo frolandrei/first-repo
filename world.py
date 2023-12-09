@@ -5,34 +5,33 @@ from enemy_data import ENEMY_SPAWN_DATA
 
 
 class World:
-    def __init__(self, data, map_image: pg.surface.Surface):
+    """Номер уровня"""
+    level: int
+    """Сложность"""
+    game_speed: float
+    """Здоровье"""
+    health: int
+    """Деньги"""
+    money: int
+    """Список мест, на которые можно установить турель"""
+    tile_map: list
+    """Список точек пути"""
+    waypoints: list
+    """Данные уровня"""
+    level_data: None
+    """Изображение карты"""
+    image: pg.surface.Surface
+    """Список врагов"""
+    enemy_list: list
+    """Кол-во врагов на карте"""
+    spawned_enemies: int
+    """Кол-во убитых врагов"""
+    killed_enemies: int
+    """Кол-во пропущенных врагов"""
+    missed_enemies: int
+
+    def __init__(self, data: dict, map_image: pg.surface.Surface):
         """ Конструктор уровня - его соствляющие """
-
-        """Номер уровня"""
-        level: int
-        """Сложность"""
-        game_speed: float
-        """Здоровье"""
-        health: int
-        """Деньги"""
-        money: int
-        """Список мест, на которые можно установить турель"""
-        tile_map: list
-        """Список точек пути"""
-        waypoints: list
-        """Данные уровня"""
-        level_data: data
-        """Изображение карты"""
-        image: pg.surface.Surface
-        """Список врагов"""
-        enemy_list: list
-        """Кол-во врагов на карте"""
-        spawned_enemies: int
-        """Кол-во убитых врагов"""
-        killed_enemies: int
-        """Кол-во пропущенных врагов"""
-        missed_enemies: int
-
         self.level = 1
         self.game_speed = 1
         self.health = c.HEALTH
@@ -56,7 +55,7 @@ class World:
                     waypoint_data = obj["polyline"]
                     self.process_waypoints(waypoint_data)
 
-    def process_waypoints(self, data):
+    def process_waypoints(self, data: list[dict]) -> None:
         """Точки пути, их координаты (x; y)"""
         for point in data:
             temp_x = point.get("x")
@@ -72,10 +71,11 @@ class World:
                 self.enemy_list.append(enemy_type)
         random.shuffle(self.enemy_list)
 
-    def is_level_complete(self):
-        """Завершение уровня"""
+    def is_level_complete(self) -> bool:
+        """Проверка завершён ли уровень"""
         if (self.killed_enemies + self.missed_enemies) == len(self.enemy_list):
             return True
+        return False
 
     def reset_level(self):
         """Сброс переменных врага"""
@@ -84,6 +84,6 @@ class World:
         self.killed_enemies = 0
         self.missed_enemies = 0
 
-    def draw(self, surface: pg.Surface):
+    def draw(self, surface: pg.surface.Surface) -> None:
         """Отрисовка карты"""
         surface.blit(self.image, (0, 0))
