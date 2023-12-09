@@ -5,30 +5,30 @@ from enemy_data import ENEMY_SPAWN_DATA
 
 
 class World:
-    """Номер уровня"""
     level: int
-    """Сложность"""
+    """Номер уровня"""
     game_speed: float
-    """Здоровье"""
+    """Сложность"""
     health: int
-    """Деньги"""
+    """Здоровье"""
     money: int
-    """Список мест, на которые можно установить турель"""
+    """Деньги"""
     tile_map: list
-    """Список точек пути"""
+    """Список мест, на которые можно установить турель"""
     waypoints: list
-    """Данные уровня"""
+    """Список точек пути"""
     level_data: None
-    """Изображение карты"""
+    """Данные уровня"""
     image: pg.surface.Surface
-    """Список врагов"""
+    """Изображение карты"""
     enemy_list: list
-    """Кол-во врагов на карте"""
+    """Список врагов"""
     spawned_enemies: int
-    """Кол-во убитых врагов"""
+    """Кол-во врагов на карте"""
     killed_enemies: int
-    """Кол-во пропущенных врагов"""
+    """Кол-во убитых врагов"""
     missed_enemies: int
+    """Кол-во пропущенных врагов"""
 
     def __init__(self, data: dict, map_image: pg.surface.Surface):
         """ Конструктор уровня - его соствляющие """
@@ -46,7 +46,7 @@ class World:
         self.missed_enemies = 0
 
     def process_data(self):
-        """Данные, извлекающие соответствующую информацию"""
+        """Извлечение информации из соответствующих данных"""
         for layer in self.level_data["layers"]:
             if layer["name"] == "tilemap":
                 self.tile_map = layer["data"]
@@ -56,7 +56,7 @@ class World:
                     self.process_waypoints(waypoint_data)
 
     def process_waypoints(self, data: list[dict]) -> None:
-        """Точки пути, их координаты (x; y)"""
+        """Составление пути из точек координат"""
         for point in data:
             temp_x = point.get("x")
             temp_y = point.get("y")
@@ -78,7 +78,7 @@ class World:
         return False
 
     def reset_level(self):
-        """Сброс переменных врага"""
+        """Сброс уровня"""
         self.enemy_list = []
         self.spawned_enemies = 0
         self.killed_enemies = 0
